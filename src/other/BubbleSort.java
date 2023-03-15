@@ -1,7 +1,8 @@
 package other;
 
 import java.util.Arrays;
-
+// 依次比较数组中相邻的两个元素大小,若a[j]>a[j+1],则交换两个元素,
+// 两两都比较一次称为一轮冒泡,结果将最大的数排到最后
 public class BubbleSort {
     public static void main(String[] args) {
         // int[] a = { 5, 9, 7, 4, 1, 3, 2, 8 };
