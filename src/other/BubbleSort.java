@@ -4,9 +4,29 @@ import java.util.Arrays;
 
 public class BubbleSort {
     public static void main(String[] args) {
-        int[] a = { 5, 9, 7, 4, 1, 3, 2, 8 };
-        // int[] a ={1,2,3,4,5,6,7,8,9};
-        bubble(a);
+        // int[] a = { 5, 9, 7, 4, 1, 3, 2, 8 };
+        int[] a ={1,2,3,4,5,6,7,8,9};
+        bubble_v2(a);
+    }
+
+    // 改进3:记录最后一次交换的索引,下一轮冒泡多少次
+    public static void bubble_v2(int[] a) {
+        int n = a.length - 1;
+        while (true) {
+            int last = 0;// 表示最后一次交换索引位置
+            for (int i = 0; i < n; i++) {
+                System.out.println("比较次数:" + i);
+                if (a[i] > a[i + 1]) {
+                    swap(a, i, i + 1);
+                    last = i;
+                }
+            }
+            n = last;
+            System.out.println("冒泡" + Arrays.toString(a));
+            if(n==0){
+                break;
+            }
+        }
     }
 
     public static void bubble(int[] a) {
