@@ -1,4 +1,4 @@
-package 知识点;
+package other;
 
 public class BinarySearch {
     public static void main(String[] args) {
@@ -12,7 +12,8 @@ public class BinarySearch {
     public static int binarySearch(int[] a, int t) {
         int l = 0, r = a.length - 1, m;
         while (l <= r) {
-            m = (l + r) / 2;
+            // m = (l + r) / 2;
+            m = l + (r - l) / 2;
             if (a[m] == t) {
                 return m;
             } else if (a[m] > t) {
@@ -24,3 +25,5 @@ public class BinarySearch {
         return -1;
     }
 }
+// m = (l + r) / 2; //存在整数溢出问题
+// l/2+r/2 ==> l-l/2+r/2 ==> l+(r-l)/2
