@@ -9,9 +9,9 @@ public class leetcode27 {
         // int nums[]={};
         // int val = 0;
 
-        int ans = violence(nums, val);
+        // int ans = violence(nums, val);
         // int ans = doublePointer(nums, val);
-        
+        int ans = doublePointer_v2(nums, val);
         System.out.println(ans);
     }
 
@@ -42,6 +42,24 @@ public class leetcode27 {
                 nums[left] = nums[right];
                 left++;
             }
+        }
+        return left;
+    }
+
+    public static int doublePointer_v2(int[] nums, int val) {
+        // 相向双指针法
+        // 基于元素顺序可以改变的题目描述改变了元素相对位置，确保了移动最少元素
+        int left = 0;
+        int right = nums.length - 1;
+        while(right >= 0 && nums[right] == val) right--; //将right移到从右数第一个值不为val的位置
+        while(left <= right) {
+            if(nums[left] == val) { //left位置的元素需要移除
+                //将right位置的元素移到left（覆盖），right位置移除
+                nums[left] = nums[right];
+                right--;
+            }
+            left++;
+            while(right >= 0 && nums[right] == val) right--;
         }
         return left;
     }
