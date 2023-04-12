@@ -38,6 +38,8 @@ public class leetcode17 {
             return;
         }
         // 获取当前数字对应的字母集合
+        // "'0'"是字符'0'的ASCII码值48，这一步计算是为了将字符'0'转换为整数0，
+        // 为了将这个数字字符转换为该数字字符串映射数组中的索引
         String letters = map[digits.charAt(index) - '0'];
         // 遍历当前数字对应的字母集合
         for (int i = 0; i < letters.length(); i++) {
