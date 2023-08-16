@@ -3,7 +3,8 @@ package other;
 public class BinarySearch {
     public static void main(String[] args) {
         // int[] array = { 1, 5, 8, 11, 19, 22, 31, 35, 40, 45, 48, 49, 50 };
-        int[] array = {1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69};
+        int[] array = { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49,
+                51, 53, 55, 57, 59, 61, 63, 65, 67, 69 };
         int target = 5;
         int idx = binarySearch(array, target);
         int idx2 = binarySearch2(array, target);
@@ -60,7 +61,75 @@ public class BinarySearch {
             }
         }
         long end = System.nanoTime();
-        System.out.println(end - start+ "纳秒02");
+        System.out.println(end - start + "纳秒02");
         return -1;
+    }
+
+    // 二分查找LeftMost 返回最左边的目标值
+    public static int binarysearchLeftmost1(int[] a, int target) {
+        int l = 0, r = a.length - 1;
+        int candidate = -1;
+        while (l <= r) {
+            int m = (l + r) >>> 1;
+            if (target < a[m]) {
+                r = m - 1;
+            } else if (a[m] < target) {
+                l = m + 1;
+            } else {
+                // 记录候选位置
+                candidate = m;
+                r = m - 1;
+            }
+        }
+        return candidate;
+    }
+
+    // 二分查找RightMost 返回最右边的目标值
+    public static int binarysearchRightmost1(int[] a, int target) {
+        int l = 0, r = a.length - 1;
+        int candidate = -1;
+        while (l <= r) {
+            int m = (l + r) >>> 1;
+            if (target < a[m]) {
+                r = m - 1;
+            } else if (a[m] < target) {
+                l = m + 1;
+            } else {
+                // 记录候选位置
+                candidate = m;
+                l = m + 1;
+            }
+        }
+        return candidate;
+    }
+
+    // LeftMost 返回值优化，找到返回最左值
+    // 没找到返回比目标值大的最左值
+    public static int binarysearchLeftmost2(int[] a, int target) {
+        int l = 0, r = a.length - 1;
+        while (l <= r) {
+            int m = (l + r) >>> 1;
+            if (target <= a[m]) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l;
+    }
+
+    // RightMost 返回值优化，找到返回最右值
+    // 没找到返回比目标值小的最右值
+    public static int binarysearchRightmost2(int[] a, int target) {
+        int l = 0, r = a.length - 1;
+        while (l <= r) {
+            int m = (l + r) >>> 1;
+            if (target < a[m]) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+        return l - 1;
     }
 }
