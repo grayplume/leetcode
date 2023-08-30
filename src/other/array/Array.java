@@ -1,4 +1,4 @@
-package other;
+package other.array;
 
 import java.util.Arrays;
 import java.util.Iterator;
